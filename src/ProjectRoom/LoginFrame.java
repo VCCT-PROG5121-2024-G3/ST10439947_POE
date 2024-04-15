@@ -8,7 +8,10 @@ package ProjectRoom;
  *
  * @author Amelia ST10439947@vcconnect.edu.za ST10439947
  */
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//this is my login jframe class
 public class LoginFrame extends javax.swing.JFrame {
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * Creates new form LoginFrame
@@ -178,34 +181,38 @@ public class LoginFrame extends javax.swing.JFrame {
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //Assign username and password variables and runs checks
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+        //reads user input for username and assigns variable
         String userName;
         userName = UsernameField.getText();
+        //reads user input for username and assigns variable 
         String passWord;
         passWord = PasswordField.getText();
 
         LoginRegisterClass login = new LoginRegisterClass();
-        login.loginCheck(userName, passWord);
+        login.loginCheck(userName, passWord);//reads variables to classes
     }//GEN-LAST:event_LoginButtonActionPerformed
 //-------------------------------------------------------------------------------------------------------------------------------------------------
     private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordFieldActionPerformed
 
+    }//GEN-LAST:event_PasswordFieldActionPerformed
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+    //this the code that quits the program when the quit button is pressed
     private void QuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_QuitButtonActionPerformed
-
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+    //this takes the user back to the welcome frame and closes the login frame
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
-        WelcomeFrame welcomeFrame = new WelcomeFrame();
+        WelcomeFrame welcomeFrame = new WelcomeFrame(); //calls method
         welcomeFrame.pack();
         welcomeFrame.setLocationRelativeTo(null);
         welcomeFrame.setDefaultCloseOperation(LoginFrame.DISPOSE_ON_CLOSE);
         setVisible(false);
         welcomeFrame.setVisible(true);
     }//GEN-LAST:event_MenuButtonActionPerformed
-
+//-------------------------------------------------------------------------------------------------------------------------------------------------
     private void UsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameFieldActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_UsernameFieldActionPerformed
 
     /**
@@ -260,3 +267,4 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
+//--------------------------------------------------END OF FILE----------------------------------------------------------------------------------

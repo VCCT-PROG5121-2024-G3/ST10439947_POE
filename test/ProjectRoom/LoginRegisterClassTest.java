@@ -15,7 +15,9 @@ import static org.junit.Assert.*;
  *
  * @author Amelia ST10439947@vcconnect.edu.za ST10439947
  */
-
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
+//this is the test call for all the important methods and checks
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
 public class LoginRegisterClassTest {
 
     public LoginRegisterClassTest() {
@@ -24,6 +26,8 @@ public class LoginRegisterClassTest {
     /**
      * Test of loginCheck method, of class LoginRegisterClass.
      */
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
+    //checks that user logs in successfully
     @Test
     public void testLoginCheck() {
         System.out.println("loginCheck");
@@ -34,10 +38,13 @@ public class LoginRegisterClassTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
 
     /**
      * Test of loginUser method, of class LoginRegisterClass.
      */
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
+    //checks that user logs in successfully and username matches variable in array stored after registration
     @Test
     public void testLoginUser() {
         System.out.println("loginUser");
@@ -48,12 +55,14 @@ public class LoginRegisterClassTest {
         boolean expResult = true;
         boolean result = instance.loginUser(userName1, passWord1, i);
         assertEquals(expResult, result);
-
     }
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
 
     /**
      * Test of checkUserName method, of class LoginRegisterClass.
      */
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
+    //checks that username inserted when registering is in the correct format
     @Test
     public void testCheckUserName() {
         System.out.println("checkUserName");
@@ -62,14 +71,17 @@ public class LoginRegisterClassTest {
         boolean expResult = false;
         boolean result = instance.checkUserName(userName1);
         assertEquals(expResult, result);
-        
+
         fail("Username is not correctly formatted, please ensure that your username contains an underscore "
                 + "and is no more than 5 characters in length.”.");
     }
-    
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
     /**
      * Test of checkPasswordComplexity method, of class LoginRegisterClass.
      */
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
+    //checks that password meets complexity test for registering -  pass examople
     @Test
     public void testCheckPasswordComplexity() {
         System.out.println("checkPasswordComplexity");
@@ -78,25 +90,27 @@ public class LoginRegisterClassTest {
         boolean expResult = true;
         boolean result = instance.checkPasswordComplexity(passWord1);
         assertEquals(expResult, result);
-        
     }
-    
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
+
+    //check that the password passes the complexity test -  fail example
     //@Test
     //public void testCheckPasswordComplexity() {
-      //  System.out.println("checkPasswordComplexity");
-        //String passWord1 = "password";
-        //LoginRegisterClass instance = new LoginRegisterClass();
-        //boolean expResult = True;
-        //boolean result = instance.checkPasswordComplexity(passWord1);
-        //assertEquals(expResult, result);
-        //fail(Password is not correctly formatted, please ensure that the password contains at least 8 characters, 
-        //a capital letter, a number and a special character.”
-        
-    
-
+    //  System.out.println("checkPasswordComplexity");
+    //String passWord1 = "password";
+    //LoginRegisterClass instance = new LoginRegisterClass();
+    //boolean expResult = True;
+    //boolean result = instance.checkPasswordComplexity(passWord1);
+    //assertEquals(expResult, result);
+    //fail(Password is not correctly formatted, please ensure that the password contains at least 8 characters, 
+    //a capital letter, a number and a special character.”
+    //}
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
     /**
      * Test of registerUser method, of class LoginRegisterClass.
      */
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
+    //checks that user registered successfully
     @Test
     public void testRegisterUser() {
         System.out.println("registerUser");
@@ -108,13 +122,15 @@ public class LoginRegisterClassTest {
         String expResult = "";
         String result = instance.registerUser(firstName1, lastName1, userName1, passWord1);
         assertEquals(expResult, result);
-       
-        fail("The test case is a prototype.");
+        fail("The test case is a prototype.");//if it fails
     }
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
 
     /**
      * Test of returnLoginStatus method, of class LoginRegisterClass.
      */
+    //-------------------------------------------------------------------------------------------------------------------------------------------------  
+    //checks that login is successfull
     @Test
     public void testReturnLoginStatus() {
         System.out.println("returnLoginStatus");
@@ -127,3 +143,4 @@ public class LoginRegisterClassTest {
     }
 
 }
+//--------------------------------------------------------------END OF FILE-----------------------------------------------------------------  

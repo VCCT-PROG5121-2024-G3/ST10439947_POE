@@ -7,9 +7,11 @@ import javax.swing.JLabel;
  *
  * @author Amelia ST10439947@vcconnect.edu.za ST10439947
  */
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
+//this is my welcomeFrame class
 public class WelcomeFrame extends javax.swing.JFrame {
-
-   
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//this sets the welcome Jframe visible
 
     public void welcomeVisible() {
         WelcomeFrame welcomeFrame = new WelcomeFrame();
@@ -18,6 +20,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
         welcomeFrame.setDefaultCloseOperation(WelcomeFrame.DISPOSE_ON_CLOSE);
         welcomeFrame.setVisible(true);
     }
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * Creates new form WelcomeFrame
@@ -141,8 +144,8 @@ public class WelcomeFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    //flags if user pressed Login
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+    //this is the registration button, this makes it visible when pressed and closes the welcome frame
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
         ///WelcomeFrame welcomeFrame = new WelcomeFrame();
         //welcomeFrame.dispose();
@@ -153,24 +156,23 @@ public class WelcomeFrame extends javax.swing.JFrame {
         setVisible(false);
         registerFrame.setVisible(true);
     }//GEN-LAST:event_RegisterButtonActionPerformed
-
-    //flags if user pressed Login
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+    //this is the login button, this makes it visible when pressed and closes the welcome frame
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        //WelcomeFrame welcomeFrame = new WelcomeFrame();
-        //welcomeFrame.dispose();
-        LoginFrame loginFrame = new LoginFrame();
+
+        LoginFrame loginFrame = new LoginFrame(); //calls login method
         loginFrame.pack();
         loginFrame.setLocationRelativeTo(null);
         loginFrame.setDefaultCloseOperation(WelcomeFrame.DISPOSE_ON_CLOSE);
         setVisible(false);
         loginFrame.setVisible(true);
-
     }//GEN-LAST:event_LoginButtonActionPerformed
-
-    //flags if user pressed Login
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//this quits the program when the user presses quit
     private void QuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_QuitButtonActionPerformed
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * @param args the command line arguments
@@ -220,3 +222,4 @@ public class WelcomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel WorkflowShadow;
     // End of variables declaration//GEN-END:variables
 }
+//-------------------------------------------END OF FILE-------------------------------------------------------------------------------------

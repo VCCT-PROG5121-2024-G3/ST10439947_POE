@@ -2,7 +2,9 @@ package ProjectRoom;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+//used for actions
 import javax.swing.JOptionPane;
+//used for message output
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,6 +14,9 @@ import javax.swing.JOptionPane;
  *
  * @author Amelia ST10439947@vcconnect.edu.za ST10439947
  */
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
+//this is my registration jframe class
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
 public class RegisterFrame extends javax.swing.JFrame implements ActionListener {
 
     public String passWord;
@@ -19,6 +24,8 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener 
     public String firstName;
     public String lastName;
 
+    //assigns global registration variables to be used in LoginRegisterClass
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
     /**
      * Creates new form RegisterFrame
      */
@@ -182,24 +189,26 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener 
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
+    //this forcefully reads all variables inputted in registerframe
 
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Register")) {
 
-            LoginRegisterClass register = new LoginRegisterClass();
+            LoginRegisterClass register = new LoginRegisterClass();//calls method
             String result;
 
             String firstName = FirstNameField.getText();
             String lastName = LastNameField.getText();
             String userName = UsernameField.getText();
             String passWord = new String(PasswordField.getText());
-          
-            result = register.registerUser(firstName, lastName, userName, passWord);
-            JOptionPane.showMessageDialog(null, result);
+
+            result = register.registerUser(firstName, lastName, userName, passWord); //calls method 
+            JOptionPane.showMessageDialog(null, result); //outputs if registration sucessfull
         }
     }
-
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
 
@@ -207,21 +216,24 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener 
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordFieldActionPerformed
 
+    }//GEN-LAST:event_PasswordFieldActionPerformed
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
+    //this quits program if user clicks the quit button
     private void QuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_QuitButtonActionPerformed
-
+//------------------------------------------------------------------------------------------------------------------------------------------------- 
+    //this sets the welcome frame visible when user clicks the menu button and quits the current fram
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
-        WelcomeFrame welcomeFrame = new WelcomeFrame();
+        WelcomeFrame welcomeFrame = new WelcomeFrame(); //calls method
         welcomeFrame.pack();
         welcomeFrame.setLocationRelativeTo(null);
         welcomeFrame.setDefaultCloseOperation(LoginFrame.DISPOSE_ON_CLOSE);
         setVisible(false);
         welcomeFrame.setVisible(true);
     }//GEN-LAST:event_MenuButtonActionPerformed
+//-------------------------------------------------------------------------------------------------------------------------------------------------  
 
     /**
      * @param args the command line arguments
@@ -273,3 +285,4 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener 
     // End of variables declaration//GEN-END:variables
 
 }
+//---------------------------------------------------------END OF FILE----------------------------------------------------------------------  
