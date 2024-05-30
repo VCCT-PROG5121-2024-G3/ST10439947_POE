@@ -6,15 +6,16 @@ package ProjectRoom;
 
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
+//----------------------------------------------------------------------------------------------------------------------------------------------
 
 /**
  *
  * @author Amelia ST10439947@vcconnect.edu.za ST10439947
  */
+//----------------------------------------------------------------------------------------------------------------------------------------------
 public class LoginClassNGTest {
-
-    public LoginClassNGTest() {
-    }
+//This tests a specific method within login class
+//----------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * Test of LoginUser method, of class LoginClass.
@@ -30,5 +31,5 @@ public class LoginClassNGTest {
         assertEquals(result, expResult);
         //    assertTrue(result, expResult);
     }
-
 }
+    //-------------------------------------------------------------------------END OF FILE------------------------------------------------- 
