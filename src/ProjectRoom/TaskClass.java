@@ -385,7 +385,7 @@ public class TaskClass {
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
     //shows the coming soon message for when the user presses the show report message
-    private void handleShowReport() {
+    public void handleShowReport() {
         ImageIcon stars = new ImageIcon("Pics/stars.png");
         Image backgroundImage = new ImageIcon("Pics/background.jpg").getImage();
 
