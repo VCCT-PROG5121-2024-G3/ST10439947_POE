@@ -108,7 +108,7 @@ public class LoginClass {
             //calls the task class, else makes them log in again
             if (LoginUser(userNameLogin, passWordLogin)) {
                 TaskClass task = new TaskClass();
-                task.TaskScreen();
+                task.TaskMenuScreen();
             } else {
                 LoginScreen();
             }
