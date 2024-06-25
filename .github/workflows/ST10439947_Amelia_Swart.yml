@@ -31,7 +31,7 @@ jobs:
      # Compiles classes to test 
       - name: compile classes
         working-directory: ./src
-        run: javac -cp "..\junit_4\junit-4.13.2.jar" ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\LoginClass.java ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\MainClass.java  ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\RegisterClass.java ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\TaskClass.java ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\WelcomeClass.java "..\test\ProjectRoom\LoginClassNGTest.java"  
+        run: javac -cp "..\junit_4\junit-4.13.2.jar" ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\LoginClass.java ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\MainClass.java  ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\RegisterClass.java ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\TaskClass.java ..\Amelia_Swart_ST10439947_PROG5121_POE_Part1\src\ProjectRoom\WelcomeClass.java "..\test\ProjectRoom\LoginClassNGTest.java" "..\test\ProjectRoom\RegisterClassNGTest.java" "..\test\ProjectRoom\TaskClassNGTest.java"  
 
     # list contents of src to verify that classess compiled 
       - name: List contents of src directory after compile
@@ -59,11 +59,11 @@ jobs:
         working-directory: ./test
         run: |
          ls
-         java -jar  "..\junit_4\junit-4.13.2.jar" -cp "." --select-class  Amelia_Swart_ST10439947_PROG5121_POE_Part1.LoginClassNGTest  
+         java -jar  "..\junit_4\junit-4.13.2.jar" -cp "." --select-class  \Amelia_Swart_ST10439947_PROG5121_POE_Part1\LoginClassNGTest  
          
             #run Message Class tests and output report 
       - name: run Response Class tests and create report 
         working-directory: ./test
         run: |
          ls
-         java -jar  "..\junit_4\junit-4.13.2.jar" -cp "." --select-class  Amelia_Swart_ST10439947_PROG5121_POE_Part1.LoginClassNGTest 
+         java -jar  "..\junit_4\junit-4.13.2.jar" -cp "." --select-class  \Amelia_Swart_ST10439947_PROG5121_POE_Part1\LoginClassNGTest 
