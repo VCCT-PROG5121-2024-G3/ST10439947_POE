@@ -32,10 +32,11 @@ public class RegisterClass {
     private JPanel createRegisterPanel() {
 
         //sets the layout of the panel
-        JPanel registerPanel = new JPanel(new GridLayout(5, 2));
+        JPanel registerPanel = new JPanel(new GridLayout(5, 2, 10, 10));
+        registerPanel.setOpaque(false);
 
         //sets preferred dimensions of the panel
-        registerPanel.setPreferredSize(new Dimension(600, 150));
+        registerPanel.setPreferredSize(new Dimension(350, 200));
 
         //sets the layout of tte text and textfields within the panel
         BoxLayout layout = new BoxLayout(registerPanel, BoxLayout.Y_AXIS);
@@ -57,18 +58,20 @@ public class RegisterClass {
 
         //creates the variables used for the label and textbox for the username field
         //adds the components to the panel
-        JLabel userNameLabel = new JLabel("Username: \n(Must be less than 5 characters "
-                + "\n& contain an underscore)");
+        JLabel userNameLabel1 = new JLabel("Username: \n(Must be less than 5 characters ");
+        JLabel userNameLabel2 = new JLabel("& contain an underscore)");
         userNameField = new JTextField();
-        registerPanel.add(userNameLabel);
+        registerPanel.add(userNameLabel1);
+        registerPanel.add(userNameLabel2);
         registerPanel.add(userNameField);
 
         //creates the variables used for the label and textbox for the password field
         //adds the components to the panel
-        JLabel passWordLabel = new JLabel("Password: \n(Must be at least 8 characters in length, "
-                + "\ninclude a number, & include a special character)");
+        JLabel passWordLabel1 = new JLabel("Password: \n(Must be at least 8 characters in length, ");
+        JLabel passWordLabel2 = new JLabel("include a number, & include a special character)");
         passWordField = new JTextField();
-        registerPanel.add(passWordLabel);
+        registerPanel.add(passWordLabel1);
+        registerPanel.add(passWordLabel2);
         registerPanel.add(passWordField);
 
         return registerPanel;
@@ -81,19 +84,32 @@ public class RegisterClass {
     public void RegisterScreen() {
 
         //custom image for the JOptionPane
-        ImageIcon butterfly = new ImageIcon("Pics/butterfly.png");
+        Image backgroundImage = new ImageIcon("Pics/background.jpg").getImage();
 
         //while loop that makes sure it pops up again if the user incorrectly formatted their information
         while (true) {
             //calls the custom panel
             JPanel registerPanel = createRegisterPanel();
 
-            //asks the user to input their information
-            int result = JOptionPane.showConfirmDialog(null, registerPanel, "Please enter your details: ",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.OK_CANCEL_OPTION, butterfly);
+            JOptionPane optionPane = new JOptionPane(registerPanel, JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+            optionPane.setOpaque(false);
 
+            JDialog dialog = optionPane.createDialog(null, "Please enter your details: ");
+            dialog.setLayout(new BorderLayout());
+
+            BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
+            dialog.setContentPane(backgroundPanel);
+            backgroundPanel.setLayout(new BorderLayout());
+            backgroundPanel.add(optionPane, BorderLayout.CENTER);
+
+            optionPane.setOptions(new Object[]{"OK"});
+
+            dialog.setSize(400, 300);
+            dialog.setVisible(true);
+
+            Object selectedButton = optionPane.getValue();
             //checks that user pressed "ok" button, then saves their information
-            if (result == JOptionPane.OK_OPTION) {
+            if (selectedButton != null && selectedButton.equals("OK")) {
                 firstName = firstNameField.getText();
                 lastName = lastNameField.getText();
                 userName = userNameField.getText();
@@ -189,6 +205,24 @@ public class RegisterClass {
             return "Registration Completed!";
         }
         return "Registration Failed!";
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+
+    public class BackgroundPanel extends JPanel {
+
+        private Image backgroundImage;
+
+        public BackgroundPanel(Image backgroundImage) {
+            this.backgroundImage = backgroundImage;
+            setOpaque(false);
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 }
     //-----------------------------------------------------END OF FILE---------------------------------------------------------------------
