@@ -83,7 +83,7 @@ public class RegisterClass {
 //then calls the login class
     public void RegisterScreen() {
 
-        //custom image for the JOptionPane
+        //custom background for the JOptionPane
         Image backgroundImage = new ImageIcon("Pics/background.jpg").getImage();
 
         //while loop that makes sure it pops up again if the user incorrectly formatted their information
@@ -91,19 +91,24 @@ public class RegisterClass {
             //calls the custom panel
             JPanel registerPanel = createRegisterPanel();
 
+            //makes the panel for the register page
             JOptionPane optionPane = new JOptionPane(registerPanel, JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
             optionPane.setOpaque(false);
 
+            //prompts the user to enter their details and sets the alyout
             JDialog dialog = optionPane.createDialog(null, "Please enter your details: ");
             dialog.setLayout(new BorderLayout());
 
+            //customises the backgrounf image anmd sets the layout
             BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
             dialog.setContentPane(backgroundPanel);
             backgroundPanel.setLayout(new BorderLayout());
             backgroundPanel.add(optionPane, BorderLayout.CENTER);
 
+            //adds the OK button for when the user is done entering their details
             optionPane.setOptions(new Object[]{"OK"});
 
+            //sets the size of the dialog and sets it visible
             dialog.setSize(400, 300);
             dialog.setVisible(true);
 
@@ -208,7 +213,7 @@ public class RegisterClass {
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------
-
+    //this class helps call the background panel as it needs to customise the paint Component
     public class BackgroundPanel extends JPanel {
 
         private Image backgroundImage;

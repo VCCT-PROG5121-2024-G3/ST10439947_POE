@@ -15,8 +15,7 @@ import java.util.List;
  * @author Amelia ST10439947@vcconnect.edu.za ST10439947
  */
 //------------------------------------------------------------------------------------------------------------------------------------------------
-//this class lets the user pick from a numeric menu for what they want to do 
-//lets the user enter all the information for the tasks
+//this class is where the user can enter their task details and select all the different task options available
 public class TaskClass {
 //---------------------------------------------------------------------------------------------------------------------------------------------
 //Global Variables that are used throughout the class
@@ -49,6 +48,7 @@ public class TaskClass {
     //creates the array list used to save all the information entered for the tasks
     private List<Task> tasks = new ArrayList<>();
 
+    //all the JDialogs used for the custom pop ups for the task options
     private JDialog taskMenuDialog;
     private JDialog taskOptionsDialog;
     private JDialog showReportDialog;
@@ -173,7 +173,7 @@ public class TaskClass {
         //sets the custom dimensions of the panel
         taskOptionsPanel.setPreferredSize(new Dimension(200, 200));
 
-        //creates the 4 numeric buttons for the menu
+        //creates the 5 task options buttons as well as a return to menu button
         JButton showDoneTasksButton = new JButton("Show Completed Tasks");
         JButton showLongestTaskButton = new JButton("Longest Task Duration");
         JButton searchTaskNameButton = new JButton("Search by Task Name");
@@ -236,24 +236,27 @@ public class TaskClass {
 //has been presed then calls the relevant methods
 
     public void TaskMenuScreen() {
-        //custom image
+        //custom images for the menu
         ImageIcon stardrop = new ImageIcon("Pics/stardrop.png");
         Image backgroundImage = new ImageIcon("Pics/background.jpg").getImage();
 
+        //creates the JDialog used for the menu and sets up the layout, size and other options
         taskMenuDialog = new JDialog((Frame) null, "Task Menu", true);
-
         taskMenuDialog.setLayout(new BorderLayout());
         taskMenuDialog.setIconImage(stardrop.getImage());
         taskMenuDialog.setSize(300, 200);
         taskMenuDialog.setLocationRelativeTo(null);
         taskMenuDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
+        //calls and sets the layout of the background image
         BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
         backgroundPanel.setLayout(new BorderLayout());
 
+        //calls the task menu panel and creates a spot for the custom image
         JPanel taskMenuPanel = createTaskMenuPanel();
         JLabel imageLabel = new JLabel(new ImageIcon("Pics/plant.png"));
 
+        //adds the background image to the JDialog and sets up the layout
         backgroundPanel.add(taskMenuPanel, BorderLayout.CENTER);
         taskMenuDialog.setContentPane(backgroundPanel);
         taskMenuDialog.add(imageLabel, BorderLayout.WEST);
@@ -271,30 +274,34 @@ public class TaskClass {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
     public void TaskOptionsScreen() {
+        //custom images for the options menu
         ImageIcon stardrop = new ImageIcon("Pics/stardrop.png");
         Image backgroundImage = new ImageIcon("Pics/background.jpg").getImage();
 
+        //creates the JDialog used for the options menu and sets up the layout, size and other options
         taskOptionsDialog = new JDialog((Frame) null, "Task Options", true);
-
         taskOptionsDialog.setLayout(new BorderLayout());
         taskOptionsDialog.setIconImage(stardrop.getImage());
         taskOptionsDialog.setSize(400, 300);
         taskOptionsDialog.setLocationRelativeTo(null);
         taskOptionsDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
+        //calls and sets the layout of the background image
         BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
         backgroundPanel.setLayout(new BorderLayout());
 
+        //calls the task options panel and creates a spot for the custom image
         JPanel taskOptionsPanel = createTaskOptionsPanel();
-
         JLabel imageLabel = new JLabel(new ImageIcon("Pics/teapot.png"));
 
+        //adds the background image to the JDialog and sets up the layout
         backgroundPanel.add(taskOptionsPanel, BorderLayout.CENTER);
         taskOptionsDialog.setContentPane(backgroundPanel);
         taskOptionsDialog.add(imageLabel, BorderLayout.WEST);
 
+        //while loop for the menu
         while (!returnMenuButtonPressed) {
-            //calls and displays the custom menu panel
+            //keeps the options menu visible while the user doesn't press the "Return to menu" button
             taskOptionsDialog.setVisible(true);
         }
 
@@ -376,6 +383,8 @@ public class TaskClass {
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
+    //this resets and sets the flags for the buttons being pressed, closes the task menu dialog 
+    //and calls the task options method
     public void handleTaskOptions() {
         returnMenuButtonPressed = false;
         taskOptionsButtonPressed = true;
@@ -384,13 +393,18 @@ public class TaskClass {
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
-    //shows the coming soon message for when the user presses the show report message
+    //this method shows the user a full report of all the tasks the user added with all of its information
+    //creates a custom JDialog with 3 sections (categorised by status) that shows the tasks
+    //uses string builders to put info together
     public void handleShowReport() {
+        //custom images used in the Dialog
         ImageIcon stars = new ImageIcon("Pics/stars.png");
         Image backgroundImage = new ImageIcon("Pics/background.jpg").getImage();
 
+        //puts the string together for ease of displaying the "To-Do" tasks
         StringBuilder todoTaskBuilder = new StringBuilder();
 
+        //puts all the details together for the tasks with the status "To-Do"
         for (Task task : tasks) {
             if ("To-Do".equals(task.getTaskStatus())) {
                 String taskDetails = "Task Name: " + task.getTaskName() + "\nTask Developer: "
@@ -401,12 +415,16 @@ public class TaskClass {
             }
         }
 
+        //creates a JTextArea where the To-Do tasks will be displayed
         JTextArea todoTaskArea = new JTextArea(todoTaskBuilder.toString());
         todoTaskArea.setBorder(BorderFactory.createTitledBorder("To-Do Tasks:"));
         todoTaskArea.setEditable(false);
         //------------------------------------------------------------
+
+        //puts the string together for ease of displaying the "Doing" tasks
         StringBuilder doingTaskBuilder = new StringBuilder();
 
+        //puts all the details together for the tasks with the status "Doing"
         for (Task task : tasks) {
             if ("Doing".equals(task.getTaskStatus())) {
                 String taskDetails = "Task Name: " + task.getTaskName() + "\nTask Developer: "
@@ -417,13 +435,16 @@ public class TaskClass {
             }
         }
 
+        //creates a JTextArea where the Doing tasks will be displayed
         JTextArea doingTaskArea = new JTextArea(doingTaskBuilder.toString());
         doingTaskArea.setBorder(BorderFactory.createTitledBorder("Doing Tasks:"));
         doingTaskArea.setEditable(false);
         //------------------------------------------------------------
 
+        //puts the string together for ease of displaying the "Done" tasks
         StringBuilder doneTaskBuilder = new StringBuilder();
 
+        //puts all the details together for the tasks with the status "Done"
         for (Task task : tasks) {
             if ("Done".equals(task.getTaskStatus())) {
                 String taskDetails = "Task Name: " + task.getTaskName() + "\nTask Developer: "
@@ -434,11 +455,13 @@ public class TaskClass {
             }
         }
 
+        //creates a JTextArea where the Done tasks will be displayed
         JTextArea doneTaskArea = new JTextArea(doneTaskBuilder.toString());
         doneTaskArea.setBorder(BorderFactory.createTitledBorder("Doing Tasks:"));
         doneTaskArea.setEditable(false);
         //------------------------------------------------------------
 
+        //this creates and sets up the JDialog where the full report will be shown
         showReportDialog = new JDialog((Frame) null, "Full Report of Tasks", true);
         showReportDialog.setLayout(new GridLayout(1, 3));
         showReportDialog.setIconImage(stars.getImage());
@@ -446,27 +469,30 @@ public class TaskClass {
         showReportDialog.setLocationRelativeTo(null);
         showReportDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
+        //calls and sets up the layout for the bacground image
         BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
         backgroundPanel.setLayout(new BorderLayout());
 
+        //creates a panel where the 3 JTextAreas fir the 3 sections will be added to
         JPanel tasksPanel = new JPanel((new GridLayout(1, 3)));
         tasksPanel.setOpaque(false);
         tasksPanel.add(new JScrollPane(todoTaskArea));
         tasksPanel.add(new JScrollPane(doingTaskArea));
         tasksPanel.add(new JScrollPane(doneTaskArea));
 
+        //adds the backghround image to the panel
         backgroundPanel.add(tasksPanel, BorderLayout.CENTER);
-
         showReportDialog.setContentPane(backgroundPanel);
 
+        //creates an "OK" button that the user can press after viewing the report, adds it to the panel
         JButton okButton = new JButton("OK");
         okButton.addActionListener(e -> showReportDialog.dispose());
-
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
         buttonPanel.add(okButton);
         backgroundPanel.add(buttonPanel, BorderLayout.SOUTH);
 
+        //makes the Dialog visible
         showReportDialog.setVisible(true);
 
     }
@@ -551,11 +577,16 @@ public class TaskClass {
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
+    //this method shows the user all tasks with the task status of Done
     public void handleShowDoneTasks() {
+        //custom Image
         ImageIcon stars = new ImageIcon("Pics/stars.png");
 
+        //creates a String List connected to the Array list to collect the done tasks
         List<String> doneTasks = new ArrayList<>();
 
+        //goes through the whole array list to find the tasks with the status of done, then formats them 
+        //and adds them to the string list for the done tasks
         for (Task task : tasks) {
             if ("Done".equals(task.getTaskStatus())) {
                 String taskDetails = "Developer: " + task.getTaskDeveloper() + " | Task Name: "
@@ -564,8 +595,10 @@ public class TaskClass {
             }
         }
 
+        //Creates a JList for the done task list so the program can display the list
         JList<String> doneTaskList = new JList<>(doneTasks.toArray(new String[0]));
 
+        //creates a JDialog for the display and configures all the settings
         doneTasksDialog = new JDialog((Frame) null, "Completed Tasks", true);
         doneTasksDialog.setLayout(new BorderLayout());
         doneTasksDialog.setIconImage(stars.getImage());
@@ -573,38 +606,51 @@ public class TaskClass {
         doneTasksDialog.setLocationRelativeTo(null);
         doneTasksDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
+        //creates a label for the custom image
         JLabel imageLabel = new JLabel(new ImageIcon("Pics/pinkflower.png"));
 
+        //adds a scrollbar for if the text goes longer than the JDialog dimensions, 
+        //this scrollbar is specifically for the done task list
         JScrollPane scrollDoneTasksPane = new JScrollPane();
         scrollDoneTasksPane.setViewportView(doneTaskList);
 
+        //adds the Image and scrollbar to the dialog
         doneTasksDialog.add(imageLabel, BorderLayout.WEST);
         doneTasksDialog.add(scrollDoneTasksPane, BorderLayout.CENTER);
 
+        //creates an "OK" button for the user to press after viewing the list of done tasks, 
+        //also configures the button
         JPanel buttonPanel = new JPanel();
         JButton okButton = new JButton("OK");
-
         okButton.addActionListener(e -> doneTasksDialog.dispose());
         buttonPanel.add(okButton);
 
+        //adds the button to the dialog and makes the dialog visible
         doneTasksDialog.add(buttonPanel, BorderLayout.SOUTH);
         doneTasksDialog.setVisible(true);
 
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
+    //this method finds the task with the largest task duration 
+    //and displays it to the user when they press the button
     public void handleShowLongestTask() {
+        //custom images
         ImageIcon clock = new ImageIcon("Pics/clock.png");
         ImageIcon error = new ImageIcon("Pics/error.png");
 
+        //creates a variable for saving the longest task
         Task longestTask = null;
 
+        //goes through the whole array list to find the task with the longest task duration
         for (Task task : tasks) {
             if (longestTask == null || task.getTaskDuration() > longestTask.getTaskDuration()) {
                 longestTask = task;
             }
         }
 
+        //displays the task detail for the task with the longest duration if it finds the task, 
+        //shows an error message if it doesn't find a task
         if (longestTask != null) {
             String taskDetails = "Developer: " + longestTask.getTaskDeveloper() + " | Task Duration: "
                     + longestTask.getTaskDuration() + " hours";
@@ -616,21 +662,30 @@ public class TaskClass {
         }
 
     }
-    //--------------------------------------------------------------------------------------------------------------------------------------------
 
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+//this method lets the user type in the task name they are looking for and displays the tasks details
     public void handleSearchTaskName() {
+        //custom images
         ImageIcon stars = new ImageIcon("Pics/stars.png");
         ImageIcon error = new ImageIcon("Pics/error.png");
 
+        //prompts the user to type in the task name and saves their input
         String nameInput = (String) JOptionPane.showInputDialog(null, "Enter the Task Name:",
                 "Search for a Task", JOptionPane.OK_OPTION, stars, null, "");
 
+        //checks that the user inputted something and tells them to input again if they didnt enter anything
         if (nameInput == null || nameInput.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No Input found, Please try again:",
+                    "Error", JOptionPane.OK_OPTION, error);
             return;
         }
 
+        //creates a variable to save the found task's details
         Task foundTask = null;
 
+        //goes through whole array list and checks to see if they task name they entered 
+        //matched a task that was enetered, and saves the task details
         for (Task task : tasks) {
             if (nameInput.equals(task.getTaskName())) {
                 foundTask = task;
@@ -638,6 +693,8 @@ public class TaskClass {
             }
         }
 
+        //if a task was saved it then formats the task details to be used for displaying, 
+        //shows the user a error message if the task was not found
         if (foundTask != null) {
             String taskDetails = "Task Name: " + foundTask.getTaskName() + " | Developer: "
                     + foundTask.getTaskDeveloper() + " | Task Status: " + foundTask.getTaskStatus();
@@ -649,24 +706,32 @@ public class TaskClass {
         }
 
     }
-    //--------------------------------------------------------------------------------------------------------------------------------------------
 
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    //this method lets the user type in the developer name they are looking for and displays 
+    //the tasks details for all the tasks linked to that developer
     public void handleSearchTaskDeveloper() {
+        //custom images
         ImageIcon stars = new ImageIcon("Pics/stars.png");
         ImageIcon notepad = new ImageIcon("Pics/notepad.png");
         ImageIcon error = new ImageIcon("Pics/error.png");
 
+        //prompts the user to type in the task name and saves their input
         String developerTask = (String) JOptionPane.showInputDialog(null, "Enter the Developer of the Tasks:",
                 "Search for a Developer's Tasks", JOptionPane.OK_OPTION, notepad, null, "");
 
+        //checks that the user inputted something and tells them to input again if they didnt enter anything
         if (developerTask == null || developerTask.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No developer name entered. Please try again:", "Error",
                     JOptionPane.OK_OPTION, error);
             return;
         }
 
+        //creates a string list to save the task details linked to the entered developer
         List<String> developerList = new ArrayList<>();
 
+        //goes through whole array list and checks to see if they developer name they entered 
+        //matched any tasks that were entered previously, and saves the task details
         for (Task task : tasks) {
             if (developerTask.equals(task.getTaskDeveloper())) {
                 String taskDetails = "Task Name: " + task.getTaskName() + " | Task Status: "
@@ -675,8 +740,10 @@ public class TaskClass {
             }
         }
 
+        //creates a JList for the string list that saved the task details to be able to display them
         JList<String> developerTasksList = new JList<>(developerList.toArray(new String[0]));
 
+        //creates the JDialog to display everythiung and configures everything
         searchDeveloperDialog = new JDialog((Frame) null, "Completed Tasks", true);
         searchDeveloperDialog.setLayout(new BorderLayout());
         searchDeveloperDialog.setIconImage(stars.getImage());
@@ -684,46 +751,59 @@ public class TaskClass {
         searchDeveloperDialog.setLocationRelativeTo(null);
         searchDeveloperDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
+        //adds a label with the devlopers name
         JLabel developerLabel = new JLabel(developerTask);
         searchDeveloperDialog.add(developerLabel, BorderLayout.CENTER);
 
+        //adds a custom image
         JLabel imageLabel = new JLabel(new ImageIcon("Pics/notepad.png"));
 
+        //adds a scrollbar for the JList for the task details and sets the size
         JScrollPane scrollSearchDeveloperPane = new JScrollPane();
         scrollSearchDeveloperPane.setViewportView(developerTasksList);
 
+        //adds everything to the dialog
         searchDeveloperDialog.add(imageLabel, BorderLayout.WEST);
         searchDeveloperDialog.add(scrollSearchDeveloperPane, BorderLayout.CENTER);
 
+        //creates an "OK"  button for the user to press after they view the list with all of the devlopers tasks, 
+        //and adds it to the dialog
         JPanel buttonPanel = new JPanel();
         JButton okButton = new JButton("OK");
-
         okButton.addActionListener(e -> searchDeveloperDialog.dispose());
         buttonPanel.add(okButton);
-
         searchDeveloperDialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        //sets the dialog visible
         searchDeveloperDialog.setVisible(true);
 
     }
-    //--------------------------------------------------------------------------------------------------------------------------------------------
 
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    //this method asks the user for the name of the task they would like to delete, 
+    //then shows the corresponding message dispalying success or failure
     public void handleDeleteTask() {
+        //custom images
         ImageIcon stars = new ImageIcon("Pics/stars.png");
         ImageIcon purple = new ImageIcon("Pics/purple.png");
         ImageIcon error = new ImageIcon("Pics/error.png");
 
+        //prompts a user to type in the name of the task that they would like to delete and saves their input
         String deleteInput = (String) JOptionPane.showInputDialog(null,
                 "Enter the Task Name of the Task you would like to Delete:", "Delete task",
                 JOptionPane.OK_OPTION, stars, null, "");
 
+        //checks that the user didnt leave it empty, if it did it shows them the corresponding message
         if (deleteInput == null || deleteInput.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No Task Name Entered, Try Again.", "Try Again",
                     JOptionPane.INFORMATION_MESSAGE, error);
             return;
         }
 
+        //creates a variable to save the task details
         Task taskToDelete = null;
 
+        //goes through the whole array list to find the matching task then saves the task details
         for (Task task : tasks) {
             if (deleteInput.equals(task.getTaskName())) {
                 taskToDelete = task;
@@ -731,6 +811,7 @@ public class TaskClass {
             }
         }
 
+        //deletes the task if a match was found and shows a success message, else shows a failure message
         if (taskToDelete != null) {
             tasks.remove(taskToDelete);
             JOptionPane.showMessageDialog(null, "The Task has been deleted successfully. ", "Task Deleted",
@@ -741,8 +822,10 @@ public class TaskClass {
         }
 
     }
-    //--------------------------------------------------------------------------------------------------------------------------------------------
 
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    //this method resets and sets the corresponding button flags, closes the task options menu, 
+    //and then runs the task menu screen method
     public void handleReturnTaskMenu() {
         returnMenuButtonPressed = true;
         taskOptionsButtonPressed = false;
@@ -775,7 +858,7 @@ public class TaskClass {
         }
 
         //------------------------------------------------------------------------------------------------------------------------------------------
-        //gets the details of the task for the variables - GETTER
+        //gets the details of the task for the variables - GETTERS
         public String getTaskID() {
             return taskID;
         }
@@ -807,6 +890,7 @@ public class TaskClass {
     }
 //---------------------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------------------
+//this class helps call the background panel as it needs to customise the paint Component
 
     public class BackgroundPanel extends JPanel {
 
