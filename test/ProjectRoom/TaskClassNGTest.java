@@ -4,6 +4,7 @@
  */
 package ProjectRoom;
 
+import javax.swing.JPanel;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 //----------------------------------------------------------------------------------------------------------------------------------------------
@@ -25,7 +26,7 @@ public class TaskClassNGTest {
         System.out.println("checkTaskDescription");
         TaskClass instance = new TaskClass();
         String taskDescription = "Create Login to authenticate users";
-        boolean expResult = true;
+        String expResult = taskDescription;
         boolean result = instance.checkTaskDescription();
         assertEquals(result, expResult);
         //success("Task successfully captured");
@@ -77,5 +78,98 @@ public class TaskClassNGTest {
         int result = instance.returnTotalHours();
         assertEquals(result, expResult);
     }
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Test of createAddTaskPanel method, of class TaskClass.
+     */
+    @Test
+    public void testCreateAddTaskPanel() {
+        System.out.println("createAddTaskPanel");
+        String developerName = "Mike Smith";
+        TaskClass instance = new TaskClass();
+        String expResult = developerName;
+        JPanel result = instance.createAddTaskPanel();
+        assertEquals(result, expResult);
+        //Other Test Data includes: "Edward Harrington", "Samantha Paulson", "Glenda Oberholzer"
+
+    }
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Test of handleShowDoneTasks method, of class TaskClass.
+     */
+    @Test
+    public void testHandleShowReport() {
+        System.out.println("handleShowReport");
+        TaskClass instance = new TaskClass();
+        instance.handleShowReport();
+    }
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Test of handleShowLongestTask method, of class TaskClass.
+     */
+    @Test
+    public void testHandleShowLongestTask() {
+        System.out.println("handleShowLongestTask");
+        String developerName = "Gelnda Oberholzer";
+        String taskDuration = "11";
+        TaskClass instance = new TaskClass();
+        instance.handleShowLongestTask();
+        String expResult = developerName + taskDuration;
+        //result = instance.handleShowLongestTask();
+        //assertEquals(result, expResult);
+    }
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Test of handleSearchTaskName method, of class TaskClass.
+     */
+    @Test
+    public void testHandleSearchTaskName() {
+        System.out.println("handleSearchTaskName");
+        String taskName = "Create Login";
+        String developerName = "Mike Smith";
+        TaskClass instance = new TaskClass();
+        instance.handleSearchTaskName();
+        String expResult = taskName + developerName;
+        //result = instance.handleSearchTaskName();
+        //assertEquals(result, expResult);
+    }
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Test of handleSearchTaskDeveloper method, of class TaskClass.
+     */
+    @Test
+    public void testHandleSearchTaskDeveloper() {
+        System.out.println("handleSearchTaskDeveloper");
+        String developerName = "Samantha Paulson";
+        String taskName = "Create Reports";
+        TaskClass instance = new TaskClass();
+        instance.handleSearchTaskDeveloper();
+        String expResult = taskName;
+        //result = instance.handleSearchTaskDeveloper();
+        //assertEquals(result, expResult);
+    }
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Test of handleDeleteTask method, of class TaskClass.
+     */
+    @Test
+    public void testHandleDeleteTask() {
+        System.out.println("handleDeleteTask");
+        String taskName = "Create Reports";
+        TaskClass instance = new TaskClass();
+        instance.handleDeleteTask();
+        String expResult = "Entry 'Create Reports' successfully deleted";
+        //result =  instance.handleDeleteTask();
+        //assertEquals(result, expResult);
+
+    }
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
 }
   //-----------------------------------------------------END OF FILE-----------------------------------------------------------------------   
